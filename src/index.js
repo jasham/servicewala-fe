@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'semantic-ui-css/semantic.min.css'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route} from 'react-router-dom'
+import Main from './screens/main'
+import Services from './screens/services'
+import SpecificService from './screens/specificService'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Route component={Main} path={"/"} exact={true}/>
+    <Route component={Services} path={"/services"} exact={true}/>
+    <Route component={SpecificService} path={"/spec_services"} exact={true}/>
+
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
