@@ -150,171 +150,171 @@ const ServicesWrapper = styled.div`
     }
 `
 
-// const Main = (props) => {
-//     const [ mainMargin , setMainMargin ] = useState("-100%")
-//     const [ moveNext, setMoveNext ] = useState(false)
-
-//     useEffect(() => {
-//         setMainMargin("0px")
-//     }, [])
-
-//     const onClickService = () => {
-//         setMainMargin("-100%")
-//         props.history.push('/spec_services')
-//         // setTimeout(() => {
-//         // },1000)
-//     }
-
-//     return (
-//         <MainWrapper
-//             mainMargin={mainMargin}
-//         >
-//             <Headers />
-//             <UpperWrapper>
-//                 <BodyLeftWrapper>
-//                     <TitleWrapper>
-//                         <CusHeader as='h1'>Anytime anywhere</CusHeader>
-//                         <CusHeader as='h4' color='rgba(0,0,0,0.4)'>we are here to help you....</CusHeader>
-//                     </TitleWrapper>
-//                     <ImageWrapper>
-//                         <ImageSubWrapper 
-//                             src={car } 
-//                         />
-//                     </ImageWrapper>
-//                 </BodyLeftWrapper>
-//                 <BodyRightWrapper>
-//                     <FormWrapper>
-//                         <Form>
-//                             <Header as='h1'>Select Our Services</Header>
-//                             <Form.Field>
-//                                 <Dropdown
-//                                     placeholder='Select services...'
-//                                     fluid
-//                                     multiple
-//                                     search
-//                                     selection
-//                                     // options={stateOptions}
-//                                 />
-//                             </Form.Field>
-//                             <Form.Field>
-//                                 Appointment: 
-//                                 {/* <b>{this.state.value}</b> */}
-//                             </Form.Field>
-//                             <Form.Field>
-//                                 <RadioComp 
-//                                     dataList={dataList}
-//                                 />
-//                             </Form.Field>
-//                             <Form.Field>
-//                                 <DateInput
-//                                     name="date"
-//                                     placeholder="Date"
-//                                     // value={this.state.date}
-//                                     iconPosition="left"
-//                                     // onChange={this.handleChange}
-//                                 />
-//                                 {/* <DatesRangeInput
-//                                     name="datesRange"
-//                                     placeholder="From - To"
-//                                     // value={this.state.datesRange}
-//                                     iconPosition="left"
-//                                     // onChange={this.handleChange}
-//                                 /> */}
-//                                 <TimeInput
-//                                     name="dateTime"
-//                                     placeholder="Date Time"
-//                                     // value={this.state.dateTime}
-//                                     iconPosition="left"
-//                                     // onChange={this.handleChange}
-//                                 />
-//                             </Form.Field>
-//                             <Form.Field>
-//                                 <TextAreaComp />
-//                             </Form.Field>
-//                             <Button fluid type='submit'>Submit</Button>
-//                         </Form>
-//                     </FormWrapper>
-                    
-//                 </BodyRightWrapper>
-                
-//             </UpperWrapper>
-//             <LowerWrapper>
-//                 <CusHeader 
-//                     as='h1'
-//                     style={{
-//                         marginBottom : 20
-//                     }}
-//                 >
-//                     Our Services
-//                 </CusHeader>
-//                 <ServicesWrapper>
-//                     <ServiceIcon 
-//                         dataList={dataIconList}
-//                         onClick={onClickService}
-//                     />
-//                 </ServicesWrapper>
-//             </LowerWrapper>
-//             <LowerWrapper>
-//                 <CusHeader 
-//                     as='h1'
-//                     style={{
-//                         marginBottom : 20
-//                     }}
-//                 >
-//                     Why Us
-//                 </CusHeader>
-//                 <ServicesWrapper>
-//                     {/* <ServiceIcon 
-//                         dataList={dataIconList}
-//                         onClick={onClickService}
-//                     /> */}
-//                 </ServicesWrapper>
-                
-//             </LowerWrapper>
-//             <LowerWrapper>
-//                 <ServicesWrapper>
-//                     {/* <ServiceIcon 
-//                         dataList={dataIconList}
-//                         onClick={onClickService}
-//                     /> */}
-//                 </ServicesWrapper>
-                
-//             </LowerWrapper>
-//         </MainWrapper>
-//     )
-// }
-
-// export default Main
-
-function App() {
-    const [response, setResponse] = useState("");
-    const [socket, setSocket] = useState()
+const Main = (props) => {
+    const [ mainMargin , setMainMargin ] = useState("-100%")
+    const [ moveNext, setMoveNext ] = useState(false)
 
     useEffect(() => {
-        let sock = socketIOClient(ENDPOINT)
-        setSocket(sock)
-        sock.emit("notify_you","Hello")
-        sock.on("chat_message", data => {
-            console.log("Heljncjks",data)
-            // setResponse(data);
-        });
-        sock.on("notify_me",function(data){
-            console.log("Main data",data)
-        })
-    },[]);
-    
-    const notify = () => {
-        axios.get(ENDPOINT+"api/v1/category/").then((res) => {
-            console.log("Here is real data",res)
-        })
-    } 
+        setMainMargin("0px")
+    }, [])
+
+    const onClickService = () => {
+        setMainMargin("-100%")
+        props.history.push('/spec_services')
+        // setTimeout(() => {
+        // },1000)
+    }
 
     return (
-      <div>
-        It's <time dateTime={response}>{response}</time>
-        <button onClick={notify}>Notify</button>
-      </div>
-    );
-  }
+        <MainWrapper
+            mainMargin={mainMargin}
+        >
+            <Headers />
+            <UpperWrapper>
+                <BodyLeftWrapper>
+                    <TitleWrapper>
+                        <CusHeader as='h1'>Anytime anywhere</CusHeader>
+                        <CusHeader as='h4' color='rgba(0,0,0,0.4)'>we are here to help you....</CusHeader>
+                    </TitleWrapper>
+                    <ImageWrapper>
+                        <ImageSubWrapper 
+                            src={car } 
+                        />
+                    </ImageWrapper>
+                </BodyLeftWrapper>
+                <BodyRightWrapper>
+                    <FormWrapper>
+                        <Form>
+                            <Header as='h1'>Select Our Services</Header>
+                            <Form.Field>
+                                <Dropdown
+                                    placeholder='Select services...'
+                                    fluid
+                                    multiple
+                                    search
+                                    selection
+                                    // options={stateOptions}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                Appointment: 
+                                {/* <b>{this.state.value}</b> */}
+                            </Form.Field>
+                            <Form.Field>
+                                <RadioComp 
+                                    dataList={dataList}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <DateInput
+                                    name="date"
+                                    placeholder="Date"
+                                    // value={this.state.date}
+                                    iconPosition="left"
+                                    // onChange={this.handleChange}
+                                />
+                                {/* <DatesRangeInput
+                                    name="datesRange"
+                                    placeholder="From - To"
+                                    // value={this.state.datesRange}
+                                    iconPosition="left"
+                                    // onChange={this.handleChange}
+                                /> */}
+                                <TimeInput
+                                    name="dateTime"
+                                    placeholder="Date Time"
+                                    // value={this.state.dateTime}
+                                    iconPosition="left"
+                                    // onChange={this.handleChange}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <TextAreaComp />
+                            </Form.Field>
+                            <Button fluid type='submit'>Submit</Button>
+                        </Form>
+                    </FormWrapper>
+                    
+                </BodyRightWrapper>
+                
+            </UpperWrapper>
+            <LowerWrapper>
+                <CusHeader 
+                    as='h1'
+                    style={{
+                        marginBottom : 20
+                    }}
+                >
+                    Our Services
+                </CusHeader>
+                <ServicesWrapper>
+                    <ServiceIcon 
+                        dataList={dataIconList}
+                        onClick={onClickService}
+                    />
+                </ServicesWrapper>
+            </LowerWrapper>
+            <LowerWrapper>
+                <CusHeader 
+                    as='h1'
+                    style={{
+                        marginBottom : 20
+                    }}
+                >
+                    Why Us
+                </CusHeader>
+                <ServicesWrapper>
+                    {/* <ServiceIcon 
+                        dataList={dataIconList}
+                        onClick={onClickService}
+                    /> */}
+                </ServicesWrapper>
+                
+            </LowerWrapper>
+            <LowerWrapper>
+                <ServicesWrapper>
+                    {/* <ServiceIcon 
+                        dataList={dataIconList}
+                        onClick={onClickService}
+                    /> */}
+                </ServicesWrapper>
+                
+            </LowerWrapper>
+        </MainWrapper>
+    )
+}
+
+export default Main
+
+// function App() {
+//     const [response, setResponse] = useState("");
+//     const [socket, setSocket] = useState()
+
+//     useEffect(() => {
+//         let sock = socketIOClient(ENDPOINT)
+//         setSocket(sock)
+//         sock.emit("notify_you","Hello")
+//         sock.on("chat_message", data => {
+//             console.log("Heljncjks",data)
+//             // setResponse(data);
+//         });
+//         sock.on("notify_me",function(data){
+//             console.log("Main data",data)
+//         })
+//     },[]);
+    
+//     const notify = () => {
+//         axios.get(ENDPOINT+"api/v1/category/").then((res) => {
+//             console.log("Here is real data",res)
+//         })
+//     } 
+
+//     return (
+//       <div>
+//         It's <time dateTime={response}>{response}</time>
+//         <button onClick={notify}>Notify</button>
+//       </div>
+//     );
+//   }
   
-  export default App;
+//   export default App;
