@@ -15,7 +15,7 @@ const MainWrapper = styled.div`
     @media (max-width: 700px) {
         width : 100px;
         height : 100px;
-    }
+    };
 `
 const SubWrapper = styled.div`
     width : 100px;
@@ -26,22 +26,37 @@ const SubWrapper = styled.div`
     cursor : pointer;
     :hover {
         background-color : rgba(0,0,0,0.07);
-    }
+    };
     @media (max-width: 700px) {
         width : 90px;
         height : 90px;
-    }
+    };
+    display : flex;
+    justify-content : center;
+    align-items : center;
+`
+const IconWrapper = styled.div`
+    width : 80px;
+    height : 80px;
+    background-repeat: no-repeat;
+    background-size: 70px;
+    background-position : center;
+    ${props => props.iconUrl ? `background-image : url(${props.iconUrl});` : null};
 `
 
+
 const ServiceIcon = (props) => {
+
     return(
         props.dataList.map((data) => {
             return(
                 <MainWrapper
                     onClick={props.onClick}
-                >
+                >   
                     <SubWrapper>
-                        {data.icon}
+                        <IconWrapper 
+                            iconUrl={data.iconUrl}
+                        />
                     </SubWrapper>
                     <label>{data.label}</label>
                 </MainWrapper>

@@ -19,9 +19,8 @@ import {
 
 import RadioComp from '../../components/common/radio'
 import ServiceIcon from '../../components/common/serviceIcon'
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://127.0.0.1:8080/";
-
+import { connect, useSelector } from 'react-redux'
+import { subCategoryDetailedList } from '../../redux/actions/subCategory'
 
 const MainWrapper = styled.div`
     position : absolute;
@@ -101,22 +100,22 @@ const dataList = [
     {label : "Regular", checked : false, value : "2"}
 ]
 
-const dataIconList = [
-    {label : "Mechanic(Car)", icon : ''},
-    {label : "Mechanic(Bike)", icon : '' },
-    {label : "Plumber", icon : '' },
-    {label : "Gardening", icon : '' },
-    {label : "Water Filter", icon : ''},
-    {label : "Electritian", icon : '' },
-    {label : "Laundry & Iron", icon : '' },
-    {label : "Printer", icon : '' },
-    {label : "Painter", icon : ''},
-    {label : "Geaser", icon : '' },
-    {label : "Washing Machine", icon : '' },
-    {label : "Gas & Stove", icon : '' },
-    {label : "General labour", icon : ''},
-    {label : "Car Washing", icon : '' }
-]
+// const dataIconList = [
+//     {label : "Mechanic(Car)", icon : ''},
+//     {label : "Mechanic(Bike)", icon : '' },
+//     {label : "Plumber", icon : '' },
+//     {label : "Gardening", icon : '' },
+//     {label : "Water Filter", icon : ''},
+//     {label : "Electritian", icon : '' },
+//     {label : "Laundry & Iron", icon : '' },
+//     {label : "Printer", icon : '' },
+//     {label : "Painter", icon : ''},
+//     {label : "Geaser", icon : '' },
+//     {label : "Washing Machine", icon : '' },
+//     {label : "Gas & Stove", icon : '' },
+//     {label : "General labour", icon : ''},
+//     {label : "Car Washing", icon : '' }
+// ]
 
 const ImageWrapper = styled.div`
     width : 100%;
@@ -153,18 +152,39 @@ const ServicesWrapper = styled.div`
 const Main = (props) => {
     const [ mainMargin , setMainMargin ] = useState("-100%")
     const [ moveNext, setMoveNext ] = useState(false)
+    const reducerState = useSelector(state => state)
+    const [subCatFillStatus, setSubCatFillStatus ] = useState(true)
+    const [ subCategoryData, setSubCategoryData] = useState([])
 
     useEffect(() => {
         setMainMargin("0px")
+        props.subCategoryDetailedList()
     }, [])
 
     const onClickService = () => {
         setMainMargin("-100%")
         props.history.push('/spec_services')
-        // setTimeout(() => {
-        // },1000)
     }
 
+    if(reducerState){
+        if(reducerState.subCategory){
+            if(reducerState.subCategory.detailedSubCatList){
+                if(reducerState.subCategory.detailedSubCatList.data){
+                    if(reducerState.subCategory.detailedSubCatList.data.length > 0){
+                        if(subCatFillStatus){
+                            let tempArr = []
+                            let detailedSubCatList = reducerState.subCategory.detailedSubCatList.data
+                            detailedSubCatList.map((sCdata) => {
+                                tempArr.push({ label : sCdata.sub_category, id : sCdata._id, iconUrl : sCdata.icon_url, bannerUrl : sCdata.bannerUrl })
+                            })
+                            setSubCategoryData(tempArr)
+                            setSubCatFillStatus(false)
+                        }
+                    }
+                }
+            }
+        }
+    }
     return (
         <MainWrapper
             mainMargin={mainMargin}
@@ -249,7 +269,7 @@ const Main = (props) => {
                 </CusHeader>
                 <ServicesWrapper>
                     <ServiceIcon 
-                        dataList={dataIconList}
+                        dataList={subCategoryData}
                         onClick={onClickService}
                     />
                 </ServicesWrapper>
@@ -284,37 +304,13 @@ const Main = (props) => {
     )
 }
 
-export default Main
 
-// function App() {
-//     const [response, setResponse] = useState("");
-//     const [socket, setSocket] = useState()
-
-//     useEffect(() => {
-//         let sock = socketIOClient(ENDPOINT)
-//         setSocket(sock)
-//         sock.emit("notify_you","Hello")
-//         sock.on("chat_message", data => {
-//             console.log("Heljncjks",data)
-//             // setResponse(data);
-//         });
-//         sock.on("notify_me",function(data){
-//             console.log("Main data",data)
-//         })
-//     },[]);
-    
-//     const notify = () => {
-//         axios.get(ENDPOINT+"api/v1/category/").then((res) => {
-//             console.log("Here is real data",res)
-//         })
-//     } 
-
-//     return (
-//       <div>
-//         It's <time dateTime={response}>{response}</time>
-//         <button onClick={notify}>Notify</button>
-//       </div>
-//     );
-//   }
   
-//   export default App;
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        subCategoryDetailedList : () => { dispatch(subCategoryDetailedList())}
+    }
+  }
+  
+  
+  export default connect(null,mapDispatchToProps)(Main)

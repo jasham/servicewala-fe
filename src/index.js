@@ -8,14 +8,17 @@ import { BrowserRouter, Route} from 'react-router-dom'
 import Main from './screens/main'
 import Services from './screens/services'
 import SpecificService from './screens/specificService'
+import { Provider } from 'react-redux'
+import store  from './redux/store'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Route component={Main} path={"/"} exact={true}/>
-    <Route component={Services} path={"/services"} exact={true}/>
-    <Route component={SpecificService} path={"/spec_services"} exact={true}/>
-
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Route component={Main} path={"/"} exact={true}/>
+      <Route component={Services} path={"/services"} exact={true}/>
+      <Route component={SpecificService} path={"/spec_services"} exact={true}/>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
