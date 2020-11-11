@@ -231,6 +231,7 @@ const Main = (props) => {
                                     placeholder="Date"
                                     // value={this.state.date}
                                     iconPosition="left"
+                                    animation='none'
                                     // onChange={this.handleChange}
                                 />
                                 {/* <DatesRangeInput
@@ -245,6 +246,7 @@ const Main = (props) => {
                                     placeholder="Date Time"
                                     // value={this.state.dateTime}
                                     iconPosition="left"
+                                    animation='none'
                                     // onChange={this.handleChange}
                                 />
                             </Form.Field>
