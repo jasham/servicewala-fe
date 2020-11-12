@@ -4,7 +4,7 @@ export const localBaseURL = "http://localhost:8080/api/v1/"
 export const testBaseURL = "https://spidy-server.herokuapp.com/api/v1/"
 export const productionBaseURL = ""
 
-export const usedBaseURL = localBaseURL || testBaseURL
+export const usedBaseURL = testBaseURL || testBaseURL
 export const userInfo = () => localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : undefined
 
 export const client = () => {
