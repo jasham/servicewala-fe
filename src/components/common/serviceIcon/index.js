@@ -42,8 +42,15 @@ const IconWrapper = styled.div`
     background-size: 70px;
     background-position : center;
     ${props => props.iconUrl ? `background-image : url(${props.iconUrl});` : null};
+    @media (max-width: 700px) {
+        background-size: 40px;
+    };
 `
-
+const CusLabel = styled.label`
+    @media (max-width: 700px) {
+        font-size : 12px;
+    };
+`
 
 const ServiceIcon = (props) => {
 
@@ -58,7 +65,7 @@ const ServiceIcon = (props) => {
                             iconUrl={data.iconUrl}
                         />
                     </SubWrapper>
-                    <label>{data.label}</label>
+                    <CusLabel>{data.label}</CusLabel>
                 </MainWrapper>
             )
         })
